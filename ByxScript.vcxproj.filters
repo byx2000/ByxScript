@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\Common">
+      <UniqueIdentifier>{f67ac49b-e0af-4351-a587-245c4db4d016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Common">
+      <UniqueIdentifier>{24f0852f-e305-4434-b7f8-7271c6c2a6f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ByxVM">
+      <UniqueIdentifier>{9d93ebe5-458a-478f-8164-9fc337826ed3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ByxVM">
+      <UniqueIdentifier>{4ad60d23-52f4-4a08-996d-1aa5d8a4218e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ByxVM\Test">
+      <UniqueIdentifier>{880ed5bd-b7e0-4d65-b623-62e51fdf8316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ByxVM\Test">
+      <UniqueIdentifier>{520a8aa4-e014-4569-b75c-616bd82d318d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Common\Code.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\CodeSeg.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\DataType.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\FunctionTable.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\Instruction.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\Opcode.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\TestUtil.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\Value.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxVM\ByxVM.h">
+      <Filter>头文件\ByxVM</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxVM\CallStack.h">
+      <Filter>头文件\ByxVM</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxVM\OperandStack.h">
+      <Filter>头文件\ByxVM</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxVM\Test\ByxVMTest.h">
+      <Filter>头文件\ByxVM\Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Common\Code.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\CodeSeg.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\DataType.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\FunctionTable.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\Instruction.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\Opcode.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\TestUtil.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\Value.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxVM\ByxVM.cpp">
+      <Filter>源文件\ByxVM</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxVM\CallStack.cpp">
+      <Filter>源文件\ByxVM</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxVM\OperandStack.cpp">
+      <Filter>源文件\ByxVM</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxVM\Test\ByxVMTest.cpp">
+      <Filter>源文件\ByxVM\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
