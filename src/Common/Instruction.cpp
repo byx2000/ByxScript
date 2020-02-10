@@ -49,7 +49,7 @@ void Instruction::setDoubleParam(double p)
 
 std::string Instruction::toString() const
 {
-	string s = GetOpcodeSymbol(op);
+	string s = OpcodeToString(op);
 	if (type == Integer)
 	{
 		s += " ";

@@ -116,7 +116,7 @@ std::string Token::toString() const
     return s;
 }
 
-std::string Token::GetTypeSymbol(TokenType type)
+std::string Token::TokenTypeToString(TokenType type)
 {
     return typeSymbol[(int)type];
 }

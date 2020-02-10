@@ -42,4 +42,4 @@ enum class Opcode
 	lnot, // 逻辑非
 };
 
-std::string GetOpcodeSymbol(Opcode op); // 获取指令文本
+std::string OpcodeToString(Opcode op); // 获取指令文本

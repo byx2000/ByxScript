@@ -109,7 +109,7 @@ Token& ByxLexer::read(TokenType type)
     Token& token = next();
     if (token.type != type)
     {
-        throw LexError(string("Token '") + Token::GetTypeSymbol(type) + "' expected.", token.row, token.col);
+        throw LexError(string("Token '") + Token::TokenTypeToString(type) + "' expected.", token.row, token.col);
     }
     return token;
 }

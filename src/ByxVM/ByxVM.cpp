@@ -291,7 +291,7 @@ void ByxVM::exec()
 			break;
 		}
 		default: // 未识别的指令
-			throw ByxVMError("Illegal instruction: " + GetOpcodeSymbol(op) + ".");
+			throw ByxVMError("Illegal instruction: " + OpcodeToString(op) + ".");
 			break;
 		}
 

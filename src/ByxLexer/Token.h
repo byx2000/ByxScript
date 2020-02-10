@@ -58,5 +58,5 @@ struct Token
     Token();
     Token(TokenType type, const std::string& val, int row, int col);
     std::string toString() const;
-    static std::string GetTypeSymbol(TokenType type);
+    static std::string TokenTypeToString(TokenType type);
 };

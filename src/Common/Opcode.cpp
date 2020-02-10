@@ -41,7 +41,7 @@ static string Symbols[] =
 	"lnot",
 };
 
-std::string GetOpcodeSymbol(Opcode op)
+std::string OpcodeToString(Opcode op)
 {
 	return Symbols[(int)op];
 }
