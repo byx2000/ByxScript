@@ -147,3 +147,5 @@ a-----b
 !flag
 !!flag
  ! ! flag
+ 
+public var i = 123;

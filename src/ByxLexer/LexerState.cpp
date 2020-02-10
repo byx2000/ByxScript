@@ -20,7 +20,9 @@ static set<string> keywords
     "continue",
     "break",
     "function",
-    "return"
+    "return",
+    "var",
+    "public",
 };
 
 static map<char, TokenType> singleToken

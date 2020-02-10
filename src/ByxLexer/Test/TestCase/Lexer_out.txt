@@ -721,3 +721,10 @@
 <Not,!>
 <Not,!>
 <Ident,flag>
+
+<Keyword,public>
+<Keyword,var>
+<Ident,i>
+<Assign,=>
+<Integer,123>
+<Semicolon,;>
