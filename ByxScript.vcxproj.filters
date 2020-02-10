@@ -43,6 +43,18 @@
     <Filter Include="源文件\ByxLexer\Test">
       <UniqueIdentifier>{691583fb-7a7a-4a3c-93af-754a3b9d5a70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ByxParser">
+      <UniqueIdentifier>{4ddfc374-c973-493f-b856-89c05b6ca39d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ByxParser">
+      <UniqueIdentifier>{382aed9f-18d6-4a90-b379-7763e5685995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ByxParser\AST">
+      <UniqueIdentifier>{3f77a106-b62f-4c99-94ae-230e593207a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ByxParser\AST">
+      <UniqueIdentifier>{ceffb02c-d220-4f9f-a385-ef9f16ea3e33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Common\Code.h">
@@ -95,6 +107,15 @@
     </ClInclude>
     <ClInclude Include="src\ByxLexer\Test\ByxLexerTest.h">
       <Filter>头文件\ByxLexer\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxParser\ByxParser.h">
+      <Filter>头文件\ByxParser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxParser\AST\AST.h">
+      <Filter>头文件\ByxParser\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxParser\AST\ASTVisitor.h">
+      <Filter>头文件\ByxParser\AST</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +172,15 @@
     </ClCompile>
     <ClCompile Include="src\ByxLexer\Test\ByxLexerTest.cpp">
       <Filter>源文件\ByxLexer\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxParser\ByxParser.cpp">
+      <Filter>源文件\ByxParser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxParser\AST\AST.cpp">
+      <Filter>源文件\ByxParser\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxParser\AST\ASTVisitor.cpp">
+      <Filter>源文件\ByxParser\AST</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
