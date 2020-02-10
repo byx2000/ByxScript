@@ -87,6 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +142,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ByxLexer\ByxLexer.h" />
+    <ClInclude Include="src\ByxLexer\CharStream.h" />
+    <ClInclude Include="src\ByxLexer\LexerState.h" />
+    <ClInclude Include="src\ByxLexer\Test\ByxLexerTest.h" />
+    <ClInclude Include="src\ByxLexer\Token.h" />
     <ClInclude Include="src\ByxVM\ByxVM.h" />
     <ClInclude Include="src\ByxVM\CallStack.h" />
     <ClInclude Include="src\ByxVM\OperandStack.h" />
@@ -155,6 +161,11 @@
     <ClInclude Include="src\Common\Value.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ByxLexer\ByxLexer.cpp" />
+    <ClCompile Include="src\ByxLexer\CharStream.cpp" />
+    <ClCompile Include="src\ByxLexer\LexerState.cpp" />
+    <ClCompile Include="src\ByxLexer\Test\ByxLexerTest.cpp" />
+    <ClCompile Include="src\ByxLexer\Token.cpp" />
     <ClCompile Include="src\ByxVM\ByxVM.cpp" />
     <ClCompile Include="src\ByxVM\CallStack.cpp" />
     <ClCompile Include="src\ByxVM\OperandStack.cpp" />

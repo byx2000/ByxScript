@@ -31,6 +31,18 @@
     <Filter Include="源文件\ByxVM\Test">
       <UniqueIdentifier>{520a8aa4-e014-4569-b75c-616bd82d318d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ByxLexer">
+      <UniqueIdentifier>{1833ba45-640e-44ad-b3ce-dc6a4e4bd7e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ByxLexer">
+      <UniqueIdentifier>{87bf65aa-75a5-49ea-aca2-cab41b938032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ByxLexer\Test">
+      <UniqueIdentifier>{901a91f4-cf57-448a-b36e-1816381ca19e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ByxLexer\Test">
+      <UniqueIdentifier>{691583fb-7a7a-4a3c-93af-754a3b9d5a70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Common\Code.h">
@@ -68,6 +80,21 @@
     </ClInclude>
     <ClInclude Include="src\ByxVM\Test\ByxVMTest.h">
       <Filter>头文件\ByxVM\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxLexer\ByxLexer.h">
+      <Filter>头文件\ByxLexer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxLexer\CharStream.h">
+      <Filter>头文件\ByxLexer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxLexer\LexerState.h">
+      <Filter>头文件\ByxLexer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxLexer\Token.h">
+      <Filter>头文件\ByxLexer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ByxLexer\Test\ByxLexerTest.h">
+      <Filter>头文件\ByxLexer\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +136,21 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxLexer\ByxLexer.cpp">
+      <Filter>源文件\ByxLexer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxLexer\CharStream.cpp">
+      <Filter>源文件\ByxLexer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxLexer\LexerState.cpp">
+      <Filter>源文件\ByxLexer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxLexer\Token.cpp">
+      <Filter>源文件\ByxLexer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxLexer\Test\ByxLexerTest.cpp">
+      <Filter>源文件\ByxLexer\Test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
