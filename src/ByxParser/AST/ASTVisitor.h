@@ -5,23 +5,23 @@
 class ASTVisitor
 {
 public:
-	void visit(ProgramNode& node);
-	void visit(EmptyNode& node);
-	void visit(IntegerNode& node);
-	void visit(DoubleNode& node);
-	void visit(VarDeclareNode& node);
-	void visit(FunctionDeclareNode& node);
-	void visit(VarNode& node);
-	void visit(VarAssignNode& node);
-	void visit(ReturnNode& node);
-	void visit(FunctionCallStmtNode& node);
-	void visit(FunctionCallExprNode& node);
-	void visit(IfNode& node);
-	void visit(BinaryOpNode& node);
-	void visit(UnaryOpNode& node);
-	void visit(WhileNode& node);
-	void visit(BreakNode& node);
-	void visit(ContinueNode& node);
-	void visit(ForNode& node);
-	void visit(CodeBlockNode& node);
+	virtual void visit(ProgramNode& node);
+	virtual void visit(EmptyNode& node);
+	virtual void visit(IntegerNode& node);
+	virtual void visit(DoubleNode& node);
+	virtual void visit(VarDeclareNode& node);
+	virtual void visit(FunctionDeclareNode& node);
+	virtual void visit(VarNode& node);
+	virtual void visit(VarAssignNode& node);
+	virtual void visit(ReturnNode& node);
+	virtual void visit(FunctionCallStmtNode& node);
+	virtual void visit(FunctionCallExprNode& node);
+	virtual void visit(IfNode& node);
+	virtual void visit(BinaryOpNode& node);
+	virtual void visit(UnaryOpNode& node);
+	virtual void visit(WhileNode& node);
+	virtual void visit(BreakNode& node);
+	virtual void visit(ContinueNode& node);
+	virtual void visit(ForNode& node);
+	virtual void visit(CodeBlockNode& node);
 };

@@ -149,6 +149,7 @@
     <ClInclude Include="src\ByxLexer\Token.h" />
     <ClInclude Include="src\ByxParser\AST\AST.h" />
     <ClInclude Include="src\ByxParser\AST\ASTVisitor.h" />
+    <ClInclude Include="src\ByxParser\AST\ToStringVisitor.h" />
     <ClInclude Include="src\ByxParser\ByxParser.h" />
     <ClInclude Include="src\ByxVM\ByxVM.h" />
     <ClInclude Include="src\ByxVM\CallStack.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="src\ByxLexer\Token.cpp" />
     <ClCompile Include="src\ByxParser\AST\AST.cpp" />
     <ClCompile Include="src\ByxParser\AST\ASTVisitor.cpp" />
+    <ClCompile Include="src\ByxParser\AST\ToStringVisitor.cpp" />
     <ClCompile Include="src\ByxParser\ByxParser.cpp" />
     <ClCompile Include="src\ByxVM\ByxVM.cpp" />
     <ClCompile Include="src\ByxVM\CallStack.cpp" />

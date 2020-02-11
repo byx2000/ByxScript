@@ -117,6 +117,9 @@
     <ClInclude Include="src\ByxParser\AST\ASTVisitor.h">
       <Filter>头文件\ByxParser\AST</Filter>
     </ClInclude>
+    <ClInclude Include="src\ByxParser\AST\ToStringVisitor.h">
+      <Filter>头文件\ByxParser\AST</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Common\Code.cpp">
@@ -180,6 +183,9 @@
       <Filter>源文件\ByxParser\AST</Filter>
     </ClCompile>
     <ClCompile Include="src\ByxParser\AST\ASTVisitor.cpp">
+      <Filter>源文件\ByxParser\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxParser\AST\ToStringVisitor.cpp">
       <Filter>源文件\ByxParser\AST</Filter>
     </ClCompile>
   </ItemGroup>
