@@ -129,6 +129,9 @@
     <ClInclude Include="src\ByxParser\AST\GlobalSymbolVisitor.h">
       <Filter>头文件\ByxParser\AST</Filter>
     </ClInclude>
+    <ClInclude Include="src\Common\Module.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Common\Code.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="src\ByxParser\AST\GlobalSymbolVisitor.cpp">
       <Filter>源文件\ByxParser\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\Module.cpp">
+      <Filter>源文件\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

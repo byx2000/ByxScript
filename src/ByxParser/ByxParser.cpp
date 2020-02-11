@@ -37,28 +37,20 @@ ByxParser& ByxParser::parse()
 	// É¨ÃèÈ«¾Ö·ûºÅ
 	GlobalSymbolVisitor globalSymbolVisitor;
 	ast->visit(globalSymbolVisitor);
-	globalVarIndex = globalSymbolVisitor.getGlobalVarIndex();
-	funcIndex = globalSymbolVisitor.getFuncIndex();
-	funcParamCnt = globalSymbolVisitor.getFuncParamCount();
+	globalVarInfo = globalSymbolVisitor.getGlobalVarInfo();
+	functionInfo = globalSymbolVisitor.getFunctionInfo();
 
-	cout << "globalVarIndex: " << endl;
-	for (auto i = globalVarIndex.begin(); i != globalVarIndex.end(); ++i)
+	cout << "globalVarInfo: " << endl;
+	for (auto i = globalVarInfo.begin(); i != globalVarInfo.end(); ++i)
 	{
-		cout << i->first << " " << i->second << endl;
+		cout << "name=" << i->first << " " << i->second.toString() << endl;
 	}
 	cout << endl;
 
-	cout << "funcIndex: " << endl;
-	for (auto i = funcIndex.begin(); i != funcIndex.end(); ++i)
+	cout << "functionInfo: " << endl;
+	for (auto i = functionInfo.begin(); i != functionInfo.end(); ++i)
 	{
-		cout << i->first << " " << i->second << endl;
-	}
-	cout << endl;
-
-	cout << "funcParamCnt: " << endl;
-	for (auto i = funcParamCnt.begin(); i != funcParamCnt.end(); ++i)
-	{
-		cout << i->first << " " << i->second << endl;
+		cout << "name=" << i->first << " " << i->second.toString() << endl;
 	}
 	cout << endl;
 

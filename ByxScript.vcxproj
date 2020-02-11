@@ -163,6 +163,7 @@
     <ClInclude Include="src\Common\DataType.h" />
     <ClInclude Include="src\Common\FunctionTable.h" />
     <ClInclude Include="src\Common\Instruction.h" />
+    <ClInclude Include="src\Common\Module.h" />
     <ClInclude Include="src\Common\Opcode.h" />
     <ClInclude Include="src\Common\TestUtil.h" />
     <ClInclude Include="src\Common\Value.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="src\Common\DataType.cpp" />
     <ClCompile Include="src\Common\FunctionTable.cpp" />
     <ClCompile Include="src\Common\Instruction.cpp" />
+    <ClCompile Include="src\Common\Module.cpp" />
     <ClCompile Include="src\Common\Opcode.cpp" />
     <ClCompile Include="src\Common\TestUtil.cpp" />
     <ClCompile Include="src\Common\Value.cpp" />

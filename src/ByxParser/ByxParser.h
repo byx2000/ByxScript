@@ -2,6 +2,7 @@
 
 #include "../ByxLexer/ByxLexer.h"
 #include "AST/AST.h"
+#include "../Common/Module.h"
 
 #include <map>
 
@@ -25,9 +26,9 @@ private:
 	std::string input; // 原始输入
 	ByxLexer lexer; // 词法分析器
 	std::shared_ptr<ASTNode> ast; // 抽象语法树根节点
-	std::map<std::string, int> globalVarIndex; // 全局变量索引
-	std::map<std::string, int> funcIndex; // 函数索引
-	std::map<std::string, int> funcParamCnt; // 函数参数数量
+	
+	std::map<std::string, GlobalVarInfo> globalVarInfo; // 全局变量信息
+	std::map<std::string, FunctionInfo> functionInfo; // 函数信息
 
 	bool parsingForHeader;
 

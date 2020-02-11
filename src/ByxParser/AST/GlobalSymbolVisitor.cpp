@@ -5,23 +5,18 @@ using namespace std;
 
 GlobalSymbolVisitor::GlobalSymbolVisitor()
 {
-	numGlobalVar = 0;
-	numFunc = 0;
+	varIndex = 0;
+	funcIndex = 0;
 }
 
-std::map<std::string, int> GlobalSymbolVisitor::getGlobalVarIndex() const
+std::map<std::string, GlobalVarInfo> GlobalSymbolVisitor::getGlobalVarInfo() const
 {
-	return globalVarIndex;
+	return globalVarInfo;
 }
 
-std::map<std::string, int> GlobalSymbolVisitor::getFuncIndex() const
+std::map<std::string, FunctionInfo> GlobalSymbolVisitor::getFunctionInfo() const
 {
-	return funcIndex;
-}
-
-std::map<std::string, int> GlobalSymbolVisitor::getFuncParamCount() const
-{
-	return funcParamCnt;
+	return functionInfo;
 }
 
 void GlobalSymbolVisitor::visit(ProgramNode& node)
@@ -35,20 +30,19 @@ void GlobalSymbolVisitor::visit(ProgramNode& node)
 void GlobalSymbolVisitor::visit(VarDeclareNode& node)
 {
 	// 全局变量重复定义
-	if (globalVarIndex.count(node.name) > 0)
+	if (globalVarInfo.count(node.name) > 0)
 	{
 		throw ByxParser::ParseError(string("Global var '") + node.name + "' is redefined.", node.row(), node.col());
 	}
-	globalVarIndex[node.name] = numGlobalVar++;
+	globalVarInfo[node.name] = GlobalVarInfo(varIndex++, node.isExport);
 }
 
 void GlobalSymbolVisitor::visit(FunctionDeclareNode& node)
 {
 	// 函数重复定义
-	if (funcIndex.count(node.name) > 0)
+	if (functionInfo.count(node.name) > 0)
 	{
 		throw ByxParser::ParseError(string("Function '") + node.name + "' is redefined.", node.row(), node.col());
 	}
-	funcIndex[node.name] = numFunc++;
-	funcParamCnt[node.name] = node.paramName.size();
+	functionInfo[node.name] = FunctionInfo(funcIndex++, node.isExport, node.paramName.size());
 }
