@@ -1,5 +1,6 @@
 #include "ByxParser.h"
 #include "AST/ToStringVisitor.h"
+#include "AST/GlobalSymbolVisitor.h"
 
 #include <sstream>
 #include <iostream>
@@ -32,6 +33,34 @@ ByxParser& ByxParser::parse()
 
 	// 构建抽象语法树
 	ast = parseProgram();
+
+	// 扫描全局符号
+	GlobalSymbolVisitor globalSymbolVisitor;
+	ast->visit(globalSymbolVisitor);
+	globalVarIndex = globalSymbolVisitor.getGlobalVarIndex();
+	funcIndex = globalSymbolVisitor.getFuncIndex();
+	funcParamCnt = globalSymbolVisitor.getFuncParamCount();
+
+	cout << "globalVarIndex: " << endl;
+	for (auto i = globalVarIndex.begin(); i != globalVarIndex.end(); ++i)
+	{
+		cout << i->first << " " << i->second << endl;
+	}
+	cout << endl;
+
+	cout << "funcIndex: " << endl;
+	for (auto i = funcIndex.begin(); i != funcIndex.end(); ++i)
+	{
+		cout << i->first << " " << i->second << endl;
+	}
+	cout << endl;
+
+	cout << "funcParamCnt: " << endl;
+	for (auto i = funcParamCnt.begin(); i != funcParamCnt.end(); ++i)
+	{
+		cout << i->first << " " << i->second << endl;
+	}
+	cout << endl;
 
 	return *this;
 }

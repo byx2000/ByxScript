@@ -126,6 +126,9 @@
     <ClInclude Include="src\ByxParser\ScopeStack.h">
       <Filter>头文件\ByxParser</Filter>
     </ClInclude>
+    <ClInclude Include="src\ByxParser\AST\GlobalSymbolVisitor.h">
+      <Filter>头文件\ByxParser\AST</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Common\Code.cpp">
@@ -199,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="src\ByxParser\ScopeStack.cpp">
       <Filter>源文件\ByxParser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxParser\AST\GlobalSymbolVisitor.cpp">
+      <Filter>源文件\ByxParser\AST</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
