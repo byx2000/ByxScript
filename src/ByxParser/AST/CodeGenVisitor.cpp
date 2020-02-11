@@ -12,6 +12,11 @@ CodeGenVisitor::CodeGenVisitor(ByxParser& parser)
 	inLoop = false;
 }
 
+CodeSeg CodeGenVisitor::getCode() const
+{
+	return codeSeg;
+}
+
 void CodeGenVisitor::visit(ProgramNode& node)
 {
 	for (int i = 0; i < (int)node.stmts.size(); ++i)
@@ -82,13 +87,17 @@ void CodeGenVisitor::visit(VarNode& node)
 		{
 			throw ByxParser::ParseError(string("Global var '") + node.name + "' is undefined.", node.row(), node.col());
 		}
-		codeSeg.add(Opcode::load, parser.globalVarInfo[node.name].index);
+		codeSeg.add(Opcode::gload, parser.globalVarInfo[node.name].index);
 	}
 	else
 	{
 		if (node.index == -1)
 		{
 			relocTable.push_back(RelocEntry(codeSeg.getSize(), node.name));
+		}
+		else
+		{
+			codeSeg.add(Opcode::load, node.index);
 		}
 	}
 }

@@ -10,6 +10,7 @@ class CodeGenVisitor : public ASTVisitor
 {
 public:
 	CodeGenVisitor(ByxParser& parser);
+	CodeSeg getCode() const;
 
 private:
 	ByxParser& parser;

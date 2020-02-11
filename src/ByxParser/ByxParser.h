@@ -31,6 +31,7 @@ private:
 	
 	std::map<std::string, GlobalVarInfo> globalVarInfo; // 全局变量信息
 	std::map<std::string, FunctionInfo> functionInfo; // 函数信息
+	CodeSeg globalCode; // 全局变量初始化代码
 
 	bool parsingForHeader;
 

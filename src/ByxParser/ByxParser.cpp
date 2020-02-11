@@ -2,6 +2,7 @@
 #include "AST/ToStringVisitor.h"
 #include "AST/GlobalSymbolVisitor.h"
 #include "AST/LocalSymbolVisitor.h"
+#include "AST/GlobalCodeGenVisitor.h"
 
 #include <sstream>
 #include <iostream>
@@ -50,6 +51,13 @@ ByxParser& ByxParser::parse()
 	ast->visit(localSymbolVisitor);
 
 	printFunctionInfo();
+
+	// 生成全局变量初始化代码
+	GlobalCodeGenVisitor globalCodeGenVisitor(*this);
+	ast->visit(globalCodeGenVisitor);
+	globalCode = globalCodeGenVisitor.getCode();
+
+	cout << globalCode.toString() << endl;
 
 	return *this;
 }
