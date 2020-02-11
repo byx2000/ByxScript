@@ -52,3 +52,15 @@ std::string FunctionInfo::toString() const
 	s += to_string(addr);
 	return s;
 }
+
+RelocEntry::RelocEntry(int addr, const std::string& varName)
+	: addr(addr), type(RelocType::Var), name(varName), paramCount(-1)
+{
+	
+}
+
+RelocEntry::RelocEntry(int addr, const std::string& funcName, int paramCount)
+	: addr(addr), type(RelocType::Function), name(funcName), paramCount(paramCount)
+{
+
+}

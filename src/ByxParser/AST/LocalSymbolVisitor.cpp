@@ -39,15 +39,15 @@ void LocalSymbolVisitor::visit(FunctionDeclareNode& node)
 	{
 		node.body[i]->visit(*this);
 	}
+
+	// 设置函数局部变量空间
+	parser.functionInfo[node.name].space = scopeStack.getSymbolCount();
 }
 
 void LocalSymbolVisitor::visit(VarDeclareNode& node)
 {
 	if (inGlobalScope)
 	{
-		/*node.index = -1;
-		cout << "skip global var declare: " << node.name << endl;
-		node.expr->visit(*this);*/
 		return;
 	}
 	

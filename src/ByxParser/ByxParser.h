@@ -8,6 +8,8 @@
 
 class ByxParser
 {
+	friend class CodeGenVisitor;
+	friend class LocalSymbolVisitor;
 public:
 	// 异常
 	struct ParseError
@@ -31,6 +33,9 @@ private:
 	std::map<std::string, FunctionInfo> functionInfo; // 函数信息
 
 	bool parsingForHeader;
+
+	void printGlobalVarInfo();
+	void printFunctionInfo();
 
 	std::shared_ptr<ASTNode> parseProgram();
 	std::shared_ptr<Statement> parseFunctionDeclare(bool isExport);

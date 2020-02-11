@@ -41,24 +41,15 @@ ByxParser& ByxParser::parse()
 	globalVarInfo = globalSymbolVisitor.getGlobalVarInfo();
 	functionInfo = globalSymbolVisitor.getFunctionInfo();
 
-	cout << "globalVarInfo: " << endl;
-	for (auto i = globalVarInfo.begin(); i != globalVarInfo.end(); ++i)
-	{
-		cout << "name=" << i->first << " " << i->second.toString() << endl;
-	}
-	cout << endl;
-
-	cout << "functionInfo: " << endl;
-	for (auto i = functionInfo.begin(); i != functionInfo.end(); ++i)
-	{
-		cout << "name=" << i->first << " " << i->second.toString() << endl;
-	}
-	cout << endl;
+	printGlobalVarInfo();
+	printFunctionInfo();
 
 	// É¨Ãè¾Ö²¿·ûºÅ
 	LocalSymbolVisitor localSymbolVisitor(*this);
 	cout << "Local symbol result:" << endl;
 	ast->visit(localSymbolVisitor);
+
+	printFunctionInfo();
 
 	return *this;
 }
@@ -84,6 +75,26 @@ static double StrToDouble(const std::string& str)
 	double val;
 	ss >> val;
 	return val;
+}
+
+void ByxParser::printGlobalVarInfo()
+{
+	cout << "globalVarInfo: " << endl;
+	for (auto i = globalVarInfo.begin(); i != globalVarInfo.end(); ++i)
+	{
+		cout << "name=" << i->first << " " << i->second.toString() << endl;
+	}
+	cout << endl;
+}
+
+void ByxParser::printFunctionInfo()
+{
+	cout << "functionInfo: " << endl;
+	for (auto i = functionInfo.begin(); i != functionInfo.end(); ++i)
+	{
+		cout << "name=" << i->first << " " << i->second.toString() << endl;
+	}
+	cout << endl;
 }
 
 std::shared_ptr<ASTNode> ByxParser::parseProgram()

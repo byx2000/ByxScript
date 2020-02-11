@@ -29,6 +29,18 @@ struct FunctionInfo
 	std::string toString() const;
 };
 
+// 重定位条目
+enum class RelocType { Var, Function };
+struct RelocEntry
+{
+	int addr;
+	RelocType type;
+	std::string name;
+	int paramCount;
+	RelocEntry(int addr, const std::string& varName);
+	RelocEntry(int addr, const std::string& funcName, int paramCount);
+};
+
 class Module
 {
 public:

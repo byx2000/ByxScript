@@ -135,6 +135,9 @@
     <ClInclude Include="src\ByxParser\AST\LocalSymbolVisitor.h">
       <Filter>头文件\ByxParser\AST</Filter>
     </ClInclude>
+    <ClInclude Include="src\ByxParser\AST\CodeGenVisitor.h">
+      <Filter>头文件\ByxParser\AST</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Common\Code.cpp">
@@ -216,6 +219,9 @@
       <Filter>源文件\Common</Filter>
     </ClCompile>
     <ClCompile Include="src\ByxParser\AST\LocalSymbolVisitor.cpp">
+      <Filter>源文件\ByxParser\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ByxParser\AST\CodeGenVisitor.cpp">
       <Filter>源文件\ByxParser\AST</Filter>
     </ClCompile>
   </ItemGroup>
