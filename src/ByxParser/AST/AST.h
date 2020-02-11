@@ -42,7 +42,7 @@ public:
 };
 
 // ø’”Ôæ‰
-class EmptyNode : public ASTNode
+class EmptyNode : public Statement
 {
 public:
 	virtual void visit(ASTVisitor& visitor) override;
@@ -52,7 +52,7 @@ public:
 class IntegerNode : public Expression
 {
 public:
-	IntegerNode(int val, const Token& token);
+	IntegerNode(int val, const Token& token = Token());
 	virtual void visit(ASTVisitor& visitor) override;
 
 	int val;
@@ -62,7 +62,7 @@ public:
 class DoubleNode : public Expression
 {
 public:
-	DoubleNode(double val, const Token& token);
+	DoubleNode(double val, const Token& token = Token());
 	virtual void visit(ASTVisitor& visitor) override;
 
 	double val;
