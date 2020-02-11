@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ByxLexer/Test/ByxLexerTest.h"
+#include "ByxParser/ByxParser.h"
 
 using namespace std;
 
@@ -10,6 +11,19 @@ int main()
 
 	// ByxLexer≤‚ ‘
 	ByxLexerTest::Run();
+
+	try
+	{
+		ByxParser parser("function f(n) { return n * n; } function main(){ var i = 100; var j = 3.14; for (var i = 0; i < 6; i = i + 1) { s = s + i; } }");
+		parser.parse();
+		cout << parser.getASTString() << endl;
+	}
+	catch (ByxParser::ParseError err)
+	{
+		cout << err.msg << endl;
+		cout << "row: " << err.row << endl;
+		cout << "col: " << err.col << endl;
+	}
 
 	return 0;
 }

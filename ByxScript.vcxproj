@@ -151,6 +151,8 @@
     <ClInclude Include="src\ByxParser\AST\ASTVisitor.h" />
     <ClInclude Include="src\ByxParser\AST\ToStringVisitor.h" />
     <ClInclude Include="src\ByxParser\ByxParser.h" />
+    <ClInclude Include="src\ByxParser\Scope.h" />
+    <ClInclude Include="src\ByxParser\ScopeStack.h" />
     <ClInclude Include="src\ByxVM\ByxVM.h" />
     <ClInclude Include="src\ByxVM\CallStack.h" />
     <ClInclude Include="src\ByxVM\OperandStack.h" />
@@ -174,6 +176,8 @@
     <ClCompile Include="src\ByxParser\AST\ASTVisitor.cpp" />
     <ClCompile Include="src\ByxParser\AST\ToStringVisitor.cpp" />
     <ClCompile Include="src\ByxParser\ByxParser.cpp" />
+    <ClCompile Include="src\ByxParser\Scope.cpp" />
+    <ClCompile Include="src\ByxParser\ScopeStack.cpp" />
     <ClCompile Include="src\ByxVM\ByxVM.cpp" />
     <ClCompile Include="src\ByxVM\CallStack.cpp" />
     <ClCompile Include="src\ByxVM\OperandStack.cpp" />

@@ -17,6 +17,7 @@ public:
 
 	ByxParser(const std::string& input);
 	ByxParser& parse();
+	std::string getASTString();
 
 private:
 	std::string input; // ‘≠ º ‰»Î

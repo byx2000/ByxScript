@@ -1,4 +1,5 @@
 #include "ByxParser.h"
+#include "AST/ToStringVisitor.h"
 
 #include <sstream>
 #include <iostream>
@@ -19,13 +20,27 @@ ByxParser::ParseError::ParseError(const std::string& msg, int row, int col)
 
 ByxParser& ByxParser::parse()
 {
-	// 词法分析
-	lexer.lex();
+	try
+	{
+		// 词法分析
+		lexer.lex();
+	}
+	catch (ByxLexer::LexError err)
+	{
+		throw ParseError(err.msg, err.row, err.col);
+	}
 
 	// 构建抽象语法树
 	ast = parseProgram();
 
 	return *this;
+}
+
+std::string ByxParser::getASTString()
+{
+	ToStringVisitor visitor;
+	ast->visit(visitor);
+	return visitor.getString();
 }
 
 static int StrToInt(const std::string& str)
