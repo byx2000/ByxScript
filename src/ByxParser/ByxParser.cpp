@@ -1,6 +1,7 @@
 #include "ByxParser.h"
 #include "AST/ToStringVisitor.h"
 #include "AST/GlobalSymbolVisitor.h"
+#include "AST/LocalSymbolVisitor.h"
 
 #include <sstream>
 #include <iostream>
@@ -53,6 +54,11 @@ ByxParser& ByxParser::parse()
 		cout << "name=" << i->first << " " << i->second.toString() << endl;
 	}
 	cout << endl;
+
+	// É¨Ãè¾Ö²¿·ûºÅ
+	LocalSymbolVisitor localSymbolVisitor(*this);
+	cout << "Local symbol result:" << endl;
+	ast->visit(localSymbolVisitor);
 
 	return *this;
 }

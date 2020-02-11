@@ -150,6 +150,7 @@
     <ClInclude Include="src\ByxParser\AST\AST.h" />
     <ClInclude Include="src\ByxParser\AST\ASTVisitor.h" />
     <ClInclude Include="src\ByxParser\AST\GlobalSymbolVisitor.h" />
+    <ClInclude Include="src\ByxParser\AST\LocalSymbolVisitor.h" />
     <ClInclude Include="src\ByxParser\AST\ToStringVisitor.h" />
     <ClInclude Include="src\ByxParser\ByxParser.h" />
     <ClInclude Include="src\ByxParser\Scope.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="src\ByxParser\AST\AST.cpp" />
     <ClCompile Include="src\ByxParser\AST\ASTVisitor.cpp" />
     <ClCompile Include="src\ByxParser\AST\GlobalSymbolVisitor.cpp" />
+    <ClCompile Include="src\ByxParser\AST\LocalSymbolVisitor.cpp" />
     <ClCompile Include="src\ByxParser\AST\ToStringVisitor.cpp" />
     <ClCompile Include="src\ByxParser\ByxParser.cpp" />
     <ClCompile Include="src\ByxParser\Scope.cpp" />

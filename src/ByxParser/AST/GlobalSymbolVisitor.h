@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 
-// 扫描全局变量和函数
+// 扫描全局变量和函数，并记录相关信息
 class GlobalSymbolVisitor : public ASTVisitor
 {
 public:
