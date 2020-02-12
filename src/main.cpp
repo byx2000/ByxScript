@@ -14,9 +14,9 @@ int main()
 
 	try
 	{
-		ByxParser parser("var g1 = 100; public var g2 = 3.14; public function main() { var i = 100; var x = 3.14; } function f(n) { return n * n; }");
+		ByxParser parser("var g1 = 100; public var g2 = 3.14; var g3 = g1 + g2; public function g(x) { g1 = x; } public function main() { var i = 100; var x = 3.14; } function f(n) { return n * n; }");
 		parser.parse();
-		cout << parser.getASTString() << endl;
+		//cout << parser.getASTString() << endl;
 	}
 	catch (ByxParser::ParseError err)
 	{

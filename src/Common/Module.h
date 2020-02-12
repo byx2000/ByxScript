@@ -21,11 +21,12 @@ struct FunctionInfo
 {
 	int index;
 	bool isExport;
+	bool hasRetVal;
 	int paramCount;
 	int space;
 	int addr;
 	FunctionInfo();
-	FunctionInfo(int index, bool isExport, int paramCount, int space = -1, int addr = -1);
+	FunctionInfo(int index, bool isExport, bool hasRetVal, int paramCount, int space = -1, int addr = -1);
 	std::string toString() const;
 };
 

@@ -20,7 +20,12 @@ void ASTVisitor::visit(DoubleNode& node)
 
 }
 
-void ASTVisitor::visit(VarDeclareNode& node)
+void ASTVisitor::visit(GlobalVarDeclareNode& node)
+{
+
+}
+
+void ASTVisitor::visit(LocalVarDeclareNode& node)
 {
 
 }

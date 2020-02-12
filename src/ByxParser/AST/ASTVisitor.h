@@ -9,7 +9,8 @@ public:
 	virtual void visit(EmptyNode& node);
 	virtual void visit(IntegerNode& node);
 	virtual void visit(DoubleNode& node);
-	virtual void visit(VarDeclareNode& node);
+	virtual void visit(GlobalVarDeclareNode& node);
+	virtual void visit(LocalVarDeclareNode& node);
 	virtual void visit(FunctionDeclareNode& node);
 	virtual void visit(VarNode& node);
 	virtual void visit(VarAssignNode& node);

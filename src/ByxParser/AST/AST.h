@@ -68,31 +68,43 @@ public:
 	double val;
 };
 
-// 变量声明
-class VarDeclareNode : public Statement
+// 全局变量声明
+class GlobalVarDeclareNode : public Statement
 {
 public:
-	VarDeclareNode(const std::string& name, std::shared_ptr<Expression> expr, bool isExport, const Token& token);
+	GlobalVarDeclareNode(const std::string& name, std::shared_ptr<Expression> expr, bool isExport, const Token& token);
 	virtual void visit(ASTVisitor& visitor) override;
 
-	std::string name;
-	std::shared_ptr<Expression> expr;
-	bool isExport;
+	std::string name; // 变量名
+	std::shared_ptr<Expression> expr; // 初始化表达式
+	bool isExport; // 是否为导出变量
 	int index; // 变量索引
-	bool isGlobal; // 是否为全局变量
+};
+
+// 局部变量声明
+class LocalVarDeclareNode : public Statement
+{
+public:
+	LocalVarDeclareNode(const std::string& name, std::shared_ptr<Expression> expr, const Token& token);
+	virtual void visit(ASTVisitor& visitor) override;
+
+	std::string name; // 变量名
+	std::shared_ptr<Expression> expr; // 初始化表达式
+	int index; // 变量索引
 };
 
 // 函数声明
 class FunctionDeclareNode : public Statement
 {
 public:
-	FunctionDeclareNode(const std::string& name, const std::vector<std::string>& paramName, const std::vector<std::shared_ptr<Statement>>& body, bool isExport, const Token& token);
+	FunctionDeclareNode(const std::string& name, const std::vector<std::string>& paramName, const std::vector<std::shared_ptr<Statement>>& body, bool isExport, bool hasRetVal, const Token& token);
 	virtual void visit(ASTVisitor& visitor) override;
 
-	std::string name;
-	std::vector<std::string> paramName;
-	std::vector<std::shared_ptr<Statement>> body;
-	bool isExport;
+	std::string name; // 函数名
+	std::vector<std::string> paramName; // 参数名
+	std::vector<std::shared_ptr<Statement>> body; // 函数体
+	bool isExport; // 是否为导出函数
+	bool hasRetVal; // 是否有返回值
 };
 
 // 变量
@@ -102,7 +114,7 @@ public:
 	VarNode(const std::string& name, const Token& token);
 	virtual void visit(ASTVisitor& visitor) override;
 
-	std::string name;
+	std::string name; // 变量名
 	int index; // 变量索引
 	bool isGlobal; // 是否为全局变量
 };
@@ -114,8 +126,8 @@ public:
 	VarAssignNode(const std::string& name, std::shared_ptr<Expression> expr, const Token& token);
 	virtual void visit(ASTVisitor& visitor) override;
 
-	std::string name;
-	std::shared_ptr<Expression> expr;
+	std::string name; // 变量名
+	std::shared_ptr<Expression> expr; // 赋值表达式
 	int index; // 变量索引
 	bool isGlobal; // 是否为全局变量
 };

@@ -16,5 +16,5 @@ private:
 	CodeSeg code;
 
 	virtual void visit(ProgramNode& node) override;
-	virtual void visit(VarDeclareNode& node) override;
+	virtual void visit(GlobalVarDeclareNode& node) override;
 };

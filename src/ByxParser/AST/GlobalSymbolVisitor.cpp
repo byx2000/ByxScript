@@ -29,7 +29,7 @@ void GlobalSymbolVisitor::visit(ProgramNode& node)
 	}
 }
 
-void GlobalSymbolVisitor::visit(VarDeclareNode& node)
+void GlobalSymbolVisitor::visit(GlobalVarDeclareNode& node)
 {
 	// 全局变量重复定义
 	if (globalVarInfo.count(node.name) > 0)
@@ -38,7 +38,6 @@ void GlobalSymbolVisitor::visit(VarDeclareNode& node)
 	}
 	globalVarInfo[node.name] = GlobalVarInfo(varIndex++, node.isExport);
 	node.index = varIndex - 1;
-	node.isGlobal = true;
 	cout << "find a global var: " << node.name << endl;
 }
 
@@ -49,5 +48,6 @@ void GlobalSymbolVisitor::visit(FunctionDeclareNode& node)
 	{
 		throw ByxParser::ParseError(string("Function '") + node.name + "' is redefined.", node.row(), node.col());
 	}
-	functionInfo[node.name] = FunctionInfo(funcIndex++, node.isExport, node.paramName.size());
+	functionInfo[node.name] = FunctionInfo(funcIndex++, node.isExport, node.hasRetVal, node.paramName.size());
+	cout << "find a function: " << node.name << endl;
 }

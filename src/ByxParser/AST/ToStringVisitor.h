@@ -15,7 +15,8 @@ private:
 	virtual void visit(ProgramNode& node) override;
 	virtual void visit(IntegerNode& node) override;
 	virtual void visit(DoubleNode& node) override;
-	virtual void visit(VarDeclareNode& node) override;
+	virtual void visit(GlobalVarDeclareNode& node) override;
+	virtual void visit(LocalVarDeclareNode& node) override;
 	virtual void visit(FunctionDeclareNode& node) override;
 	virtual void visit(CodeBlockNode& node) override;
 	virtual void visit(VarNode& node) override;

@@ -12,12 +12,12 @@ public:
 
 private:
 	ByxParser& parser;
-	bool inGlobalScope; // 标记是否处于全局作用域
 	ScopeStack scopeStack; // 局部作用域栈
 
 	virtual void visit(ProgramNode& node) override;
 	virtual void visit(FunctionDeclareNode& node) override;
-	virtual void visit(VarDeclareNode& node) override;
+	virtual void visit(GlobalVarDeclareNode& node) override;
+	virtual void visit(LocalVarDeclareNode& node) override;
 	virtual void visit(CodeBlockNode& node) override;
 	virtual void visit(VarNode& node) override;
 	virtual void visit(VarAssignNode& node) override;

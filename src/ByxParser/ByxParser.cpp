@@ -14,6 +14,7 @@ ByxParser::ByxParser(const std::string& input)
 	: input(input), lexer(input)
 {
 	parsingForHeader = false;
+	hasRetVal = false;
 }
 
 ByxParser::ParseError::ParseError(const std::string& msg, int row, int col)
@@ -36,6 +37,10 @@ ByxParser& ByxParser::parse()
 
 	// 构建抽象语法树
 	ast = parseProgram();
+	ToStringVisitor toStringVisitor;
+	ast->visit(toStringVisitor);
+	cout << "abstract syntax tree:" << endl;
+	cout << toStringVisitor.getString() << endl;
 
 	// 扫描全局符号
 	cout << "The first traverse: " << endl;
@@ -49,10 +54,11 @@ ByxParser& ByxParser::parse()
 	printFunctionInfo();
 
 	// 扫描局部符号
-	/*LocalSymbolVisitor localSymbolVisitor(*this);
-	cout << "Local symbol result:" << endl;
+	LocalSymbolVisitor localSymbolVisitor(*this);
+	cout << "The second traverse:" << endl;
 	ast->visit(localSymbolVisitor);
 
+	cout << endl;
 	printFunctionInfo();
 
 	// 生成全局变量初始化代码
@@ -60,7 +66,7 @@ ByxParser& ByxParser::parse()
 	ast->visit(globalCodeGenVisitor);
 	globalCode = globalCodeGenVisitor.getCode();
 
-	cout << "global code:" << endl;
+	cout << "The third traverse:" << endl;
 	cout << globalCode.toString() << endl;
 
 	// 生成其余代码
@@ -69,10 +75,10 @@ ByxParser& ByxParser::parse()
 	code = codeGenVisitor.getCode();
 	relocTable = codeGenVisitor.getRelocTable();
 
-	cout << "other code:" << endl;
+	cout << "The forth traverst:" << endl;
 	cout << code.toString() << endl;
 	printRelocTable();
-	printFunctionInfo();*/
+	printFunctionInfo();/**/
 
 	return *this;
 }
@@ -146,7 +152,7 @@ std::shared_ptr<ASTNode> ByxParser::parseProgram()
 
 			if (lexer.nextVal() == "var") // 全局变量声明
 			{
-				stmts.push_back(parseVarDeclare(isExport));
+				stmts.push_back(parseGlobalVarDeclare(isExport));
 			}
 			else if (lexer.nextVal() == "function") // 函数声明
 			{
@@ -167,6 +173,8 @@ std::shared_ptr<ASTNode> ByxParser::parseProgram()
 
 std::shared_ptr<Statement> ByxParser::parseFunctionDeclare(bool isExport)
 {
+	hasRetVal = false;
+
 	// 读取function关键字
 	Token token = lexer.next();
 
@@ -200,10 +208,10 @@ std::shared_ptr<Statement> ByxParser::parseFunctionDeclare(bool isExport)
 	lexer.next();
 
 	// 构造函数声明节点
-	return make_shared<FunctionDeclareNode>(name, paramName, body, isExport, token);
+	return make_shared<FunctionDeclareNode>(name, paramName, body, isExport, hasRetVal, token);
 }
 
-std::shared_ptr<Statement> ByxParser::parseVarDeclare(bool isExport)
+std::shared_ptr<Statement> ByxParser::parseGlobalVarDeclare(bool isExport)
 {
 	// 读取var关键字
 	Token token = lexer.next();
@@ -223,7 +231,30 @@ std::shared_ptr<Statement> ByxParser::parseVarDeclare(bool isExport)
 	readSemicolon();
 
 	// 构造变量声明节点
-	return make_shared<VarDeclareNode>(name, expr, isExport, token);
+	return make_shared<GlobalVarDeclareNode>(name, expr, isExport, token);
+}
+
+std::shared_ptr<Statement> ByxParser::parseLocalVarDeclare()
+{
+	// 读取var关键字
+	Token token = lexer.next();
+
+	// 读取变量名
+	string name = lexer.read(TokenType::Ident).val;
+
+	// 读取初始化表达式
+	shared_ptr<Expression> expr = make_shared<IntegerNode>(0);
+	if (lexer.nextType() != TokenType::Semicolon)
+	{
+		token = lexer.read(TokenType::Assign);
+		expr = parseExpr();
+	}
+
+	// 读取分号
+	readSemicolon();
+
+	// 构造变量声明节点
+	return make_shared<LocalVarDeclareNode>(name, expr, token);
 }
 
 std::shared_ptr<Statement> ByxParser::parseStatement()
@@ -231,10 +262,10 @@ std::shared_ptr<Statement> ByxParser::parseStatement()
 	Token token = lexer.peek();
 	if (token.type == TokenType::Keyword)
 	{
-		// 变量声明
+		// 局部变量声明
 		if (token.val == "var")
 		{
-			return parseVarDeclare(false);
+			return parseLocalVarDeclare();
 		}
 		// 函数返回
 		else if (token.val == "return")
@@ -363,6 +394,7 @@ std::shared_ptr<Statement> ByxParser::parseReturn()
 
 	if (lexer.nextType() != TokenType::Semicolon)
 	{
+		hasRetVal = true;
 		expr = parseExpr();
 		lexer.read(TokenType::Semicolon);
 		return make_shared<ReturnNode>(true, expr, token);

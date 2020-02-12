@@ -5,8 +5,8 @@
 
 using namespace std;
 
-CodeGenVisitor::CodeGenVisitor(ByxParser& parser, bool globalCode)
-	: parser(parser), globalCode(globalCode)
+CodeGenVisitor::CodeGenVisitor(ByxParser& parser)
+	: parser(parser)
 {
 	inGlobal = true;
 	inLoop = false;
@@ -31,26 +31,16 @@ void CodeGenVisitor::visit(ProgramNode& node)
 	}
 }
 
-void CodeGenVisitor::visit(VarDeclareNode& node)
+void CodeGenVisitor::visit(GlobalVarDeclareNode& node)
 {
-	if (globalCode)
-	{
-		node.expr->visit(*this);
-		int index = parser.globalVarInfo[node.name].index;
-		codeSeg.add(Opcode::gstore, index);
-	}
-	else
-	{
-		if (inGlobal)
-		{
-			return;
-		}
-		else
-		{
-			node.expr->visit(*this);
-			codeSeg.add(Opcode::store, node.index);
-		}
-	}
+	node.expr->visit(*this);
+	codeSeg.add(Opcode::gstore, node.index);
+}
+
+void CodeGenVisitor::visit(LocalVarDeclareNode& node)
+{
+	node.expr->visit(*this);
+	codeSeg.add(Opcode::store, node.index);
 }
 
 void CodeGenVisitor::visit(FunctionDeclareNode& node)
@@ -92,7 +82,7 @@ void CodeGenVisitor::visit(DoubleNode& node)
 
 void CodeGenVisitor::visit(VarNode& node)
 {
-	if (inGlobal)
+	/*if (inGlobal)
 	{
 		// 全局变量未定义
 		if (parser.globalVarInfo.count(node.name) == 0)
@@ -119,6 +109,23 @@ void CodeGenVisitor::visit(VarNode& node)
 		{
 			codeSeg.add(Opcode::load, node.index);
 		}
+	}*/
+
+	if (node.index == -1)
+	{
+		relocTable.push_back(RelocEntry(codeSeg.getSize(), node.name));
+		codeSeg.add(Opcode::gload, 0);
+	}
+	else
+	{
+		if (node.isGlobal)
+		{
+			codeSeg.add(Opcode::gload, node.index);
+		}
+		else
+		{
+			codeSeg.add(Opcode::load, node.index);
+		}
 	}
 }
 
@@ -134,7 +141,14 @@ void CodeGenVisitor::visit(VarAssignNode& node)
 	}
 	else
 	{
-		codeSeg.add(Opcode::store, node.index);
+		if (node.isGlobal)
+		{
+			codeSeg.add(Opcode::gstore, node.index);
+		}
+		else
+		{
+			codeSeg.add(Opcode::store, node.index);
+		}
 	}
 }
 

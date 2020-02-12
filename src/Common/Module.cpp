@@ -27,13 +27,14 @@ FunctionInfo::FunctionInfo()
 {
 	index = -1;
 	isExport = false;
+	hasRetVal = false;
 	paramCount = -1;
 	space = -1;
 	addr = -1;
 }
 
-FunctionInfo::FunctionInfo(int index, bool isExport, int paramCount, int space, int addr)
-	: index(index), isExport(isExport), paramCount(paramCount), space(space), addr(addr)
+FunctionInfo::FunctionInfo(int index, bool isExport, bool hasRetVal, int paramCount, int space, int addr)
+	: index(index), isExport(isExport), hasRetVal(hasRetVal), paramCount(paramCount), space(space), addr(addr)
 {
 
 }
@@ -46,6 +47,8 @@ std::string FunctionInfo::toString() const
 	s += to_string(isExport);
 	s += ", paramCount=";
 	s += to_string(paramCount);
+	s += ", hasRetVal=";
+	s += to_string(hasRetVal);
 	s += ", space=";
 	s += to_string(space);
 	s += ", addr=";

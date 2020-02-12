@@ -36,6 +36,7 @@ private:
 	std::vector<RelocEntry> relocTable; // 重定位表
 
 	bool parsingForHeader;
+	bool hasRetVal;
 
 	void printGlobalVarInfo();
 	void printFunctionInfo();
@@ -43,7 +44,8 @@ private:
 
 	std::shared_ptr<ASTNode> parseProgram();
 	std::shared_ptr<Statement> parseFunctionDeclare(bool isExport);
-	std::shared_ptr<Statement> parseVarDeclare(bool isExport);
+	std::shared_ptr<Statement> parseGlobalVarDeclare(bool isExport);
+	std::shared_ptr<Statement> parseLocalVarDeclare();
 	std::shared_ptr<Statement> parseStatement();
 	std::shared_ptr<Statement> parseVarAssign();
 	std::shared_ptr<Statement> parseReturn();

@@ -27,9 +27,18 @@ void ToStringVisitor::visit(DoubleNode& node)
 	str += to_string(node.val);
 }
 
-void ToStringVisitor::visit(VarDeclareNode& node)
+void ToStringVisitor::visit(GlobalVarDeclareNode& node)
 {
-	str += "VarDec(";
+	str += "GlobalVarDec(";
+	str += node.name;
+	str += ",";
+	node.expr->visit(*this);
+	str += ")";
+}
+
+void ToStringVisitor::visit(LocalVarDeclareNode& node)
+{
+	str += "LocalVarDec(";
 	str += node.name;
 	str += ",";
 	node.expr->visit(*this);

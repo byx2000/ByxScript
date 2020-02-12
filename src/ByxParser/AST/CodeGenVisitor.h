@@ -9,7 +9,7 @@ class ByxParser;
 class CodeGenVisitor : public ASTVisitor
 {
 public:
-	CodeGenVisitor(ByxParser& parser, bool globalCode = false);
+	CodeGenVisitor(ByxParser& parser);
 	CodeSeg getCode() const;
 	std::vector<RelocEntry> getRelocTable() const;
 
@@ -18,14 +18,14 @@ private:
 	CodeSeg codeSeg;
 	std::vector<RelocEntry> relocTable;
 
-	bool globalCode;
 	bool inGlobal;
-	bool inLoop;
+	bool inLoop; // 标记是否在循环内
 	std::vector<int> breakStmtIndex;
 	std::vector<int> continueStmtIndex;
 
 	virtual void visit(ProgramNode& node) override;
-	virtual void visit(VarDeclareNode& node) override;
+	virtual void visit(GlobalVarDeclareNode& node) override;
+	virtual void visit(LocalVarDeclareNode& node) override;
 	virtual void visit(FunctionDeclareNode& node) override;
 	virtual void visit(IntegerNode& node) override;
 	virtual void visit(DoubleNode& node) override;

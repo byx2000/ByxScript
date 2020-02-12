@@ -8,14 +8,13 @@ using namespace std;
 LocalSymbolVisitor::LocalSymbolVisitor(ByxParser& parser)
 	: parser(parser)
 {
-	inGlobalScope = false;
+	
 }
 
 void LocalSymbolVisitor::visit(ProgramNode& node)
 {
 	for (int i = 0; i < (int)node.stmts.size(); ++i)
 	{
-		inGlobalScope = true;
 		node.stmts[i]->visit(*this);
 	}
 }
@@ -30,11 +29,10 @@ void LocalSymbolVisitor::visit(FunctionDeclareNode& node)
 	for (int i = 0; i < (int)node.paramName.size(); ++i)
 	{
 		int index = scopeStack.define(node.paramName[i]);
-		cout << "define " << node.paramName[i] << " " << index << endl;
+		cout << "define parameter: " << node.paramName[i] << " " << index << endl;
 	}
 
 	// 处理函数体
-	inGlobalScope = false;
 	for (int i = 0; i < (int)node.body.size(); ++i)
 	{
 		node.body[i]->visit(*this);
@@ -44,13 +42,14 @@ void LocalSymbolVisitor::visit(FunctionDeclareNode& node)
 	parser.functionInfo[node.name].space = scopeStack.getSymbolCount();
 }
 
-void LocalSymbolVisitor::visit(VarDeclareNode& node)
+void LocalSymbolVisitor::visit(GlobalVarDeclareNode& node)
 {
-	if (inGlobalScope)
-	{
-		return;
-	}
-	
+	node.expr->visit(*this);
+	node.index = parser.globalVarInfo[node.name].index;
+}
+
+void LocalSymbolVisitor::visit(LocalVarDeclareNode& node)
+{
 	try
 	{
 		node.index = scopeStack.define(node.name);
@@ -60,7 +59,7 @@ void LocalSymbolVisitor::visit(VarDeclareNode& node)
 		throw ByxParser::ParseError(string("Redefined local var: ") + node.name + ".", node.row(), node.col());
 	}
 
-	cout << "define " << node.name << " " << node.index << endl;
+	cout << "define local var: " << node.name << " " << node.index << endl;
 
 	node.expr->visit(*this);
 }
@@ -68,12 +67,10 @@ void LocalSymbolVisitor::visit(VarDeclareNode& node)
 void LocalSymbolVisitor::visit(CodeBlockNode& node)
 {
 	scopeStack.push();
-
 	for (int i = 0; i < (int)node.stmts.size(); ++i)
 	{
 		node.stmts[i]->visit(*this);
 	}
-
 	scopeStack.pop();
 }
 
@@ -81,13 +78,26 @@ void LocalSymbolVisitor::visit(VarNode& node)
 {
 	try
 	{
+		// 查找局部作用域
 		node.index = scopeStack.resolve(node.name);
-		cout << "resolve " << node.name << " " << node.index << endl;
+		node.isGlobal = false;
+		cout << "resolve local var: " << node.name << " " << node.index << endl;
 	}
 	catch (...)
 	{
-		node.index = -1;
-		cout << "relocate " << node.name << endl;
+		// 查找本模块全局变量
+		if (parser.globalVarInfo.count(node.name) > 0)
+		{
+			node.index = parser.globalVarInfo[node.name].index;
+			node.isGlobal = true;
+			cout << "resolve global var: " << node.name << " " << node.index << endl;
+		}
+		// 未找到，生成重定位条目
+		else
+		{
+			node.index = -1;
+			cout << "relocate " << node.name << endl;
+		}
 	}
 }
 
@@ -95,13 +105,26 @@ void LocalSymbolVisitor::visit(VarAssignNode& node)
 {
 	try
 	{
+		// 查找局部作用域
 		node.index = scopeStack.resolve(node.name);
-		cout << "resolve " << node.name << " " << node.index << endl;
+		node.isGlobal = false;
+		cout << "resolve local var: " << node.name << " " << node.index << endl;
 	}
 	catch (...)
 	{
-		node.index = -1;
-		cout << "relocate " << node.name << endl;
+		// 查找本模块全局变量
+		if (parser.globalVarInfo.count(node.name) > 0)
+		{
+			node.index = parser.globalVarInfo[node.name].index;
+			node.isGlobal = true;
+			cout << "resolve global var: " << node.name << " " << node.index << endl;
+		}
+		// 未找到，生成重定位条目
+		else
+		{
+			node.index = -1;
+			cout << "relocate " << node.name << endl;
+		}
 	}
 
 	node.expr->visit(*this);

@@ -56,21 +56,32 @@ void DoubleNode::visit(ASTVisitor& visitor)
 	visitor.visit(*this);
 }
 
-VarDeclareNode::VarDeclareNode(const std::string& name, std::shared_ptr<Expression> expr, bool isExport, const Token& token)
-	: name(name), expr(expr), isExport(isExport)
+GlobalVarDeclareNode::GlobalVarDeclareNode(const std::string& name, std::shared_ptr<Expression> expr, bool isExport, const Token& token)
+	: name(name), isExport(isExport), expr(expr)
 {
 	this->token = token;
 	index = -1;
-	isGlobal = false;
 }
 
-void VarDeclareNode::visit(ASTVisitor& visitor)
+void GlobalVarDeclareNode::visit(ASTVisitor& visitor)
 {
 	visitor.visit(*this);
 }
 
-FunctionDeclareNode::FunctionDeclareNode(const std::string& name, const std::vector<std::string>& paramName, const std::vector<std::shared_ptr<Statement>>& body, bool isExport, const Token& token)
-	: name(name), paramName(paramName), body(body), isExport(isExport)
+LocalVarDeclareNode::LocalVarDeclareNode(const std::string& name, std::shared_ptr<Expression> expr, const Token& token)
+	: name(name), expr(expr)
+{
+	this->token = token;
+	index = -1;
+}
+
+void LocalVarDeclareNode::visit(ASTVisitor& visitor)
+{
+	visitor.visit(*this);
+}
+
+FunctionDeclareNode::FunctionDeclareNode(const std::string& name, const std::vector<std::string>& paramName, const std::vector<std::shared_ptr<Statement>>& body, bool isExport, bool hasRetVal, const Token& token)
+	: name(name), paramName(paramName), body(body), isExport(isExport), hasRetVal(hasRetVal)
 {
 	this->token = token;
 }
