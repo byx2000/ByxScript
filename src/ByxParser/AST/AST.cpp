@@ -61,6 +61,7 @@ VarDeclareNode::VarDeclareNode(const std::string& name, std::shared_ptr<Expressi
 {
 	this->token = token;
 	index = -1;
+	isGlobal = false;
 }
 
 void VarDeclareNode::visit(ASTVisitor& visitor)
@@ -84,6 +85,7 @@ VarNode::VarNode(const std::string& name, const Token& token)
 {
 	this->token = token;
 	index = -1;
+	isGlobal = false;
 }
 
 void VarNode::visit(ASTVisitor& visitor)
@@ -96,6 +98,7 @@ VarAssignNode::VarAssignNode(const std::string& name, std::shared_ptr<Expression
 {
 	this->token = token;
 	index = -1;
+	isGlobal = false;
 }
 
 void VarAssignNode::visit(ASTVisitor& visitor)

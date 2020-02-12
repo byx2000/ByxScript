@@ -64,3 +64,26 @@ RelocEntry::RelocEntry(int addr, const std::string& funcName, int paramCount)
 {
 
 }
+
+std::string RelocEntry::toString() const
+{
+	string s = "addr=";
+	s += to_string(addr);
+	s += " type=";
+	if (type == RelocType::Var)
+	{
+		s += "var";
+	}
+	else
+	{
+		s += "func";
+	}
+	s += " name=";
+	s += name;
+	if (type == RelocType::Function)
+	{
+		s += " paramCount=";
+		s += to_string(paramCount);
+	}
+	return s;
+}

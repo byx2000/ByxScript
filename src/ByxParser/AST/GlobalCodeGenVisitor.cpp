@@ -25,7 +25,7 @@ void GlobalCodeGenVisitor::visit(ProgramNode& node)
 
 void GlobalCodeGenVisitor::visit(VarDeclareNode& node)
 {
-	CodeGenVisitor visitor(parser);
+	CodeGenVisitor visitor(parser, true);
 	node.visit(visitor);
 	code.add(visitor.getCode());
 }

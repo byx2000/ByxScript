@@ -78,7 +78,8 @@ public:
 	std::string name;
 	std::shared_ptr<Expression> expr;
 	bool isExport;
-	int index;
+	int index; // 变量索引
+	bool isGlobal; // 是否为全局变量
 };
 
 // 函数声明
@@ -102,7 +103,8 @@ public:
 	virtual void visit(ASTVisitor& visitor) override;
 
 	std::string name;
-	int index;
+	int index; // 变量索引
+	bool isGlobal; // 是否为全局变量
 };
 
 // 赋值
@@ -114,7 +116,8 @@ public:
 
 	std::string name;
 	std::shared_ptr<Expression> expr;
-	int index;
+	int index; // 变量索引
+	bool isGlobal; // 是否为全局变量
 };
 
 // 函数返回

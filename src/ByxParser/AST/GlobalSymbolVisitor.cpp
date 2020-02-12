@@ -1,6 +1,8 @@
 #include "GlobalSymbolVisitor.h"
 #include "../ByxParser.h"
 
+#include <iostream>
+
 using namespace std;
 
 GlobalSymbolVisitor::GlobalSymbolVisitor()
@@ -35,6 +37,9 @@ void GlobalSymbolVisitor::visit(VarDeclareNode& node)
 		throw ByxParser::ParseError(string("Global var '") + node.name + "' is redefined.", node.row(), node.col());
 	}
 	globalVarInfo[node.name] = GlobalVarInfo(varIndex++, node.isExport);
+	node.index = varIndex - 1;
+	node.isGlobal = true;
+	cout << "find a global var: " << node.name << endl;
 }
 
 void GlobalSymbolVisitor::visit(FunctionDeclareNode& node)

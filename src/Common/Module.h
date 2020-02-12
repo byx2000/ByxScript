@@ -39,6 +39,7 @@ struct RelocEntry
 	int paramCount;
 	RelocEntry(int addr, const std::string& varName);
 	RelocEntry(int addr, const std::string& funcName, int paramCount);
+	std::string toString() const;
 };
 
 class Module

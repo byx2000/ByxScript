@@ -32,11 +32,14 @@ private:
 	std::map<std::string, GlobalVarInfo> globalVarInfo; // 全局变量信息
 	std::map<std::string, FunctionInfo> functionInfo; // 函数信息
 	CodeSeg globalCode; // 全局变量初始化代码
+	CodeSeg code; // 其余代码
+	std::vector<RelocEntry> relocTable; // 重定位表
 
 	bool parsingForHeader;
 
 	void printGlobalVarInfo();
 	void printFunctionInfo();
+	void printRelocTable();
 
 	std::shared_ptr<ASTNode> parseProgram();
 	std::shared_ptr<Statement> parseFunctionDeclare(bool isExport);

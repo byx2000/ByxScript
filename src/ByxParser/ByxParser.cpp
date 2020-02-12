@@ -3,6 +3,7 @@
 #include "AST/GlobalSymbolVisitor.h"
 #include "AST/LocalSymbolVisitor.h"
 #include "AST/GlobalCodeGenVisitor.h"
+#include "AST/CodeGenVisitor.h"
 
 #include <sstream>
 #include <iostream>
@@ -37,16 +38,18 @@ ByxParser& ByxParser::parse()
 	ast = parseProgram();
 
 	// 扫描全局符号
+	cout << "The first traverse: " << endl;
 	GlobalSymbolVisitor globalSymbolVisitor;
 	ast->visit(globalSymbolVisitor);
 	globalVarInfo = globalSymbolVisitor.getGlobalVarInfo();
 	functionInfo = globalSymbolVisitor.getFunctionInfo();
 
+	cout << endl;
 	printGlobalVarInfo();
 	printFunctionInfo();
 
 	// 扫描局部符号
-	LocalSymbolVisitor localSymbolVisitor(*this);
+	/*LocalSymbolVisitor localSymbolVisitor(*this);
 	cout << "Local symbol result:" << endl;
 	ast->visit(localSymbolVisitor);
 
@@ -57,7 +60,19 @@ ByxParser& ByxParser::parse()
 	ast->visit(globalCodeGenVisitor);
 	globalCode = globalCodeGenVisitor.getCode();
 
+	cout << "global code:" << endl;
 	cout << globalCode.toString() << endl;
+
+	// 生成其余代码
+	CodeGenVisitor codeGenVisitor(*this);
+	ast->visit(codeGenVisitor);
+	code = codeGenVisitor.getCode();
+	relocTable = codeGenVisitor.getRelocTable();
+
+	cout << "other code:" << endl;
+	cout << code.toString() << endl;
+	printRelocTable();
+	printFunctionInfo();*/
 
 	return *this;
 }
@@ -101,6 +116,16 @@ void ByxParser::printFunctionInfo()
 	for (auto i = functionInfo.begin(); i != functionInfo.end(); ++i)
 	{
 		cout << "name=" << i->first << " " << i->second.toString() << endl;
+	}
+	cout << endl;
+}
+
+void ByxParser::printRelocTable()
+{
+	cout << "reloc table:" << endl;
+	for (int i = 0; i < (int)relocTable.size(); ++i)
+	{
+		cout << relocTable[i].toString() << endl;
 	}
 	cout << endl;
 }
